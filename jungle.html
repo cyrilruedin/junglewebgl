@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+      <meta charset="utf-8"/>
+
+      <script src="js/generation/simplex-noise.js"></script>
+      <script src="js/generation/TerrainGeneration.js"></script>
+      <script src="js/commonFunctions.js"></script>
+      <script src="js/gl-matrix.js"></script>
+      <script src="js/webglTools.js"></script>
+      <script src="js/scene.js"></script>
+      <script src="js/land.js"></script>
+      <script src="js/tree.js"></script>
+      <script src="js/pony.js"></script>
+      <script src="js/terrain.js"></script>
+		  <script src="js/OBJ_loader.js"></script>
+      <script src="js/FlatTexture.js"></script>
+      <script src="js/animatedTexture.js"></script>
+      <script src="js/skybox.js"></script>
+      <script src="js/skybox-loader.js"></script>
+      <script src="debug/webgl-debug.js"></script>
+      <script src="js/mouseMotionHandling.js"></script>
+
+      <!-- vertex shader for skybox -->
+		<script type="x-shader/x-vertex" id="shader-vs-skybox">
+			 uniform mat4 uPMatrix;
+			 uniform mat4 uMVMatrix;
+			 attribute vec3 aCoords;
+			 varying vec3 vCoords;
+			 void main() {
+				vec4 eyeCoords = uMVMatrix * vec4(aCoords,1.0);
+				vCoords = aCoords;
+				gl_Position = uPMatrix * eyeCoords;
+
+			 }
+		</script>
+
+		<!-- fragment shader fox skybox -->
+		<script type="x-shader/x-fragment" id="shader-fs-skybox">
+			 precision mediump float;
+			 varying vec3 vCoords;
+			 uniform samplerCube uSkybox1;
+			 uniform samplerCube uSkybox2;
+			 void main() {
+				  vec4 color1 = textureCube(uSkybox1, vCoords);
+				  vec4 color2 = textureCube(uSkybox2, vCoords);
+				  gl_FragColor = /*color1 - */color2; /// TODO : APPLY OTHER EFFECT HERE
+			 }
+		</script>
+
+
+    <script id="shader-vs-offset" type="x-shader/x-vertex">
+        attribute vec3 aVertexPosition;
+  			attribute vec2 aTextureCoord;
+  			uniform mat4 uMVMatrix;
+  			uniform mat4 uPMatrix;
+  			varying vec2 vTextureCoord;
+        //ASTUCE active ou desactive textureOffset
+        //attribute float aOffsetEnable;
+        //varying float vOffsetEnable;
+  			void main(void) {
+          //vOffsetEnable = aOffsetEnable;
+  				vTextureCoord = aTextureCoord;
+  				gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
+  			}
+  		</script>
+  		<script id="shader-fs-offset" type="x-shader/x-fragment">
+      #ifdef GL_ES
+      precision highp float;
+      #endif
+      uniform sampler2D uColorTexture;
+      //ASTUCE
+      //varying float vOffsetEnable;
+      uniform float deltaTexX;
+      uniform float deltaTexY;
+      varying vec2 vTextureCoord;
+      void main(void) {
+        vec2 mapCoord = vec2(vTextureCoord.s, vTextureCoord.t);
+        vec2 offset = vec2(deltaTexX, deltaTexX);
+        mapCoord += offset;
+        if(mapCoord.x > 1.0) mapCoord.x -= 1.0;
+        if(mapCoord.y > 1.0) mapCoord.y -= 1.0;
+        vec4 texelColor = texture2D(uColorTexture, mapCoord);
+        if (texelColor.a < 1.0){discard;}
+        gl_FragColor = texelColor.rgba;
+      }
+  		</script>
+
+
+      <script id="shader-vs" type="x-shader/x-vertex">
+			attribute vec3 aVertexPosition;
+			attribute vec3 aVertexNormal;
+			attribute vec2 aTextureCoord;
+			uniform mat4 uMVMatrix;
+			uniform mat4 uPMatrix;
+			uniform mat4 uNMatrix;
+			uniform vec3 uLightPosition;
+			varying vec3 vNormal;
+			varying vec2 vTextureCoord;
+			varying vec3 vLightRay;
+			void main(void) {
+
+				vTextureCoord = aTextureCoord;
+				vec4 vertex = uMVMatrix * vec4(aVertexPosition, 1.0);
+				vNormal = vec3(uNMatrix * vec4(aVertexNormal, 1.0));
+				vec4 light = vec4(uLightPosition,1.0);
+				vLightRay = vertex.xyz - light.xyz;
+				gl_Position = uPMatrix * vertex;
+			}
+		</script>
+		<script id="shader-fs" type="x-shader/x-fragment">
+			#ifdef GL_ES
+			precision highp float;
+			#endif
+
+      uniform float uAlpha;
+
+			uniform sampler2D uColorTexture;
+			varying vec2 vTextureCoord;
+
+			varying vec3 vNormal;
+			varying vec3 vLightRay;
+			void main(void){
+				vec3 finalColor;
+				vec2 mapCoord = vec2(vTextureCoord.s, vTextureCoord.t);
+				vec4 texelColor = texture2D(uColorTexture, mapCoord);
+        if (texelColor.a < 1.0){discard;}
+
+
+				vec3 L = normalize(vLightRay);
+				vec3 N = normalize(vNormal);
+				float lambertTerm = dot(N,-L);
+				finalColor = texelColor.rgb;
+				if( lambertTerm>0.0 )
+				finalColor *= lambertTerm;
+				gl_FragColor = vec4(finalColor, texelColor.a);
+			}
+		</script>
+
+
+  </head>
+  <body onload="initWebGL()">
+    <canvas id="webgl-canvas" width="1600" height="900">
+      HTML5 is not supported
+    </canvas>
+<details>
+
+  <summary>Gestion de la flore</summary>
+  <table>
+    <tr><td>fougère </td><td>0<input type="range" id="sliderFern" value="0" min="0" max="5.0" step="0.01" >5</td></tr>
+    <tr><td>arbre 1 </td><td>0<input type="range" id="sliderTree1" value="0" min="0" max="2.0" step="0.01" >2</td></tr>
+    <tr><td>arbre 2 </td><td>0<input type="range" id="sliderTree2" value="0" min="0" max="2.0" step="0.01" >2</td></tr>
+    <tr><td>arbre 3 </td><td>0<input type="range" id="sliderTree3" value="0" min="0" max="2.0" step="0.01" >2</td></tr>
+    <tr><td>arbre 4 </td><td>0<input type="range" id="sliderTree4" value="0" min="0" max="2.0" step="0.01" >2</td></tr>
+    <tr><td>arbre 5 </td><td>0<input type="range" id="sliderTree5" value="0" min="0" max="2.0" step="0.01" >2</td></tr>
+    <tr><td>arbre 6 </td><td>0<input type="range" id="sliderTree6" value="0" min="0" max="2.0" step="0.01" >2</td></tr>
+
+    <tr><td>Pin 1  </td><td>0<input type="range" id="sliderPine1" value="0" min="0" max="2.0" step="0.01" >2</td></tr>
+    <tr><td>Pin 2  </td><td>0<input type="range" id="sliderPine2" value="0" min="0" max="2.0" step="0.01" >2</td></tr>
+
+    <tr><td>Palmier 1 </td><td>0<input type="range" id="sliderPalm1" value="0" min="0" max="2.0" step="0.01" >2</td></tr>
+    <tr><td>Palmier 2 </td><td>0<input type="range" id="sliderPalm2" value="0" min="0" max="2.0" step="0.01" >2</td></tr>
+    <tr><td>Palmier 3 </td><td>0<input type="range" id="sliderPalm3" value="0" min="0" max="2.0" step="0.01" >2</td></tr>
+    <tr><td>Palmier 4 </td><td>0<input type="range" id="sliderPalm4" value="0" min="0" max="2.0" step="0.01" >2</td></tr>
+    <tr><td>Palmier 5 </td><td>0<input type="range" id="sliderPalm5" value="0" min="0" max="2.0" step="0.01" >2</td></tr>
+
+    <tr><td>Arbuste Palmier 1 </td><td>0<input type="range" id="sliderPalmShrub1" value="0.3" min="0" max="2.0" step="0.01" >2</td></tr>
+    <tr><td>Arbuste Palmier 2 </td><td>0<input type="range" id="sliderPalmShrub2" value="0.1" min="0" max="2.0" step="0.01" >2</td></tr>
+
+    <tr><td>Arbuste  1 </td><td>0<input type="range" id="sliderShrub1" value="0.1" min="0" max="2.0" step="0.01" >2</td></tr>
+    <tr><td>Arbuste  2 </td><td>0<input type="range" id="sliderShrub2" value="0.1" min="0" max="2.0" step="0.01" >2</td></tr>
+    <tr><td>Arbuste  3 </td><td>0<input type="range" id="sliderShrub3" value="0" min="0" max="2.0" step="0.01" >2</td></tr>
+    <tr><td>Arbuste  4 </td><td>0<input type="range" id="sliderShrub4" value="0" min="0" max="2.0" step="0.01" >2</td></tr>
+    <tr><td>Arbuste  5 </td><td>0<input type="range" id="sliderShrub5" value="0" min="0" max="2.0" step="0.01" >2</td></tr>
+    <tr><td>Arbuste  6 </td><td>0<input type="range" id="sliderShrub6" value="0" min="0" max="2.0" step="0.01" >2</td></tr>
+
+    <tr><td>Herbe  1 </td><td>0<input type="range" id="sliderWeed1" value="0" min="0" max="2.0" step="0.01" >2</td></tr>
+    <tr><td>Herbe  2 </td><td>0<input type="range" id="sliderWeed2" value="0" min="0" max="2.0" step="0.01" >2</td></tr>
+    <tr><td>Herbe  3 </td><td>0<input type="range" id="sliderWeed3" value="0" min="0" max="2.0" step="0.01" >2</td></tr>
+    <tr><td>Herbe  4 </td><td>0<input type="range" id="sliderWeed4" value="0" min="0" max="2.0" step="0.01" >2</td></tr>
+    <tr><td>Herbe  5 </td><td>0<input type="range" id="sliderWeed5" value="0" min="0" max="2.0" step="0.01" >2</td></tr>
+    <tr><td>Herbe  6 </td><td>0<input type="range" id="sliderWeed6" value="0" min="0" max="2.0" step="0.01" >2</td></tr>
+    <tr><td>Poney </td><td>0<input type="range" id="sliderPoney" value="0" min="0" max="0.2" step="0.001" >0.5</td></tr>
+
+  </table>
+<span id="bt_validate"><button onclick="placeFlore()"> Appliquer </button></span>
+
+</details>
+
+
+    <details>
+      <summary>Controle</summary>
+      <p>Deplacement : W, A, S, D, R, F,  Maj, Espace</p>
+      <p>Rotation : I, K, J, L, U, O, touches directionnelles</p>
+      <p>Poney mode : P </p>
+    </details>
+    <span>2017 Cyril Ruedin, "P pour Poney"</span>
+    <span>Credit OBJ : loopix-project</span>
+
+    <script> var audio = new Audio('jungle.mp3');
+audio.play();
+var canv = document.getElementById("webgl-canvas");
+    canv.width = window.innerWidth-40;
+    canv.height = window.innerHeight-120;
+
+    </script>
+
+
+		<br />
+
+  </body>
+
+</html>
