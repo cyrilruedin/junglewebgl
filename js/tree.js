@@ -10,7 +10,7 @@ class Tree{
 
     this.pos = pos;
     this.model = model;
-    this.texture = "static/"+texture;
+    this.texture = "static"+texture;
     this.scale = scale;
     this.distShow = distShow;
     this.rot = rot;
