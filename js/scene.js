@@ -126,16 +126,16 @@ function checkKeyUp(ev){
 }
 
 function activePonyMod(){
-	tree.push(new Pony(vec3.fromValues(0,-50,-25), "../model/pony2/pony.obj", "model/pony2/pony.png", [1,0,0],0.02, 0.1));
-	tree.push(new Pony(vec3.fromValues(0,-50,-25), "../model/pony2/eyelashes.obj", "model/pony2/eyelashes.png",[1,0,0],0.02, 0.1));
-	tree.push(new Pony(vec3.fromValues(0,-50,-25), "../model/pony2/hairFront.obj", "model/pony2/hairFront.png",[1,0,0],0.02, 0.1));
-	tree.push(new Pony(vec3.fromValues(0,-50,-25), "../model/pony2/leftEye.obj", "model/pony2/leftEye.png",[1,0,0],0.02, 0.1));
-	tree.push(new Pony(vec3.fromValues(0,-50,-15), "../model/pony2/leftWing.obj", "model/pony2/leftWing.png",[0,1,0],0.05, -0.2));
-	tree.push(new Pony(vec3.fromValues(0,-50,-25), "../model/pony2/rightEye.obj", "model/pony2/rightEye.png",[1,0,0],0.02, 0.1));
-	tree.push(new Pony(vec3.fromValues(0,-50,-15), "../model/pony2/rightWing.obj", "model/pony2/rightWing.png",[0,1,0],0.05, 0.2));
-	tree.push(new Pony(vec3.fromValues(0,-50,-25), "../model/pony2/tail.obj", "model/pony2/tail.png",[0,0,1],0));
-	tree.push(new Pony(vec3.fromValues(0,-50,-25), "../model/pony2/teeth.obj", "model/pony2/teeth.png",[0,0,1],0.02, 0.1));
-	tree.push(new Pony(vec3.fromValues(0,-50,-25), "../model/pony2/tongue.obj", "model/pony2/tongue.png",[0,0,1],0.02, 0.1));
+	tree.push(new Pony(vec3.fromValues(0,-50,-25), "model/pony2/pony.obj", "model/pony2/pony.png", [1,0,0],0.02, 0.1));
+	tree.push(new Pony(vec3.fromValues(0,-50,-25), "model/pony2/eyelashes.obj", "model/pony2/eyelashes.png",[1,0,0],0.02, 0.1));
+	tree.push(new Pony(vec3.fromValues(0,-50,-25), "model/pony2/hairFront.obj", "model/pony2/hairFront.png",[1,0,0],0.02, 0.1));
+	tree.push(new Pony(vec3.fromValues(0,-50,-25), "model/pony2/leftEye.obj", "model/pony2/leftEye.png",[1,0,0],0.02, 0.1));
+	tree.push(new Pony(vec3.fromValues(0,-50,-15), "model/pony2/leftWing.obj", "model/pony2/leftWing.png",[0,1,0],0.05, -0.2));
+	tree.push(new Pony(vec3.fromValues(0,-50,-25), "model/pony2/rightEye.obj", "model/pony2/rightEye.png",[1,0,0],0.02, 0.1));
+	tree.push(new Pony(vec3.fromValues(0,-50,-15), "model/pony2/rightWing.obj", "model/pony2/rightWing.png",[0,1,0],0.05, 0.2));
+	tree.push(new Pony(vec3.fromValues(0,-50,-25), "model/pony2/tail.obj", "model/pony2/tail.png",[0,0,1],0));
+	tree.push(new Pony(vec3.fromValues(0,-50,-25), "model/pony2/teeth.obj", "model/pony2/teeth.png",[0,0,1],0.02, 0.1));
+	tree.push(new Pony(vec3.fromValues(0,-50,-25), "model/pony2/tongue.obj", "model/pony2/tongue.png",[0,0,1],0.02, 0.1));
 }
 
 
@@ -250,125 +250,125 @@ function placeFlore(){
 
 		if(parseFloat(document.getElementById("sliderFern").value) > 0){
 			var posArray = getPositionArray(terrain.vertices, parseFloat(document.getElementById("sliderFern").value))
-			tree.push(new Tree(posArray, rRot,rScale, "../model/new/loopix-project/WOODLAND_PACK/w_fern3/obj__fern3.obj", "model/new/loopix-project/WOODLAND_PACK/w_fern3/fern3.png", 300));
+			tree.push(new Tree(posArray, rRot,rScale, "model/new/loopix-project/WOODLAND_PACK/w_fern3/obj__fern3.obj", "model/new/loopix-project/WOODLAND_PACK/w_fern3/fern3.png", 300));
 		}
 
 	if(parseFloat(document.getElementById("sliderTree1").value) > 0){
 		var posArray = getPositionArray(terrain.vertices, parseFloat(document.getElementById("sliderTree1").value))
-		tree.push(new Tree(posArray, rRot,rScale, "../model/new/loopix-project/WOODLAND_PACK/WOODLAND_TREES/f_tree1/obj__tree1.obj", "/model/new/loopix-project/WOODLAND_PACK/WOODLAND_TREES/f_tree1/tree1.png", 900));
+		tree.push(new Tree(posArray, rRot,rScale, "model/new/loopix-project/WOODLAND_PACK/WOODLAND_TREES/f_tree1/obj__tree1.obj", "/model/new/loopix-project/WOODLAND_PACK/WOODLAND_TREES/f_tree1/tree1.png", 900));
 	}
 
 	if(parseFloat(document.getElementById("sliderTree2").value) > 0){
 		var posArray = getPositionArray(terrain.vertices, parseFloat(document.getElementById("sliderTree2").value))
-		tree.push(new Tree(posArray, rRot,rScale, "../model/new/loopix-project/WOODLAND_PACK/WOODLAND_TREES/f_tree2/obj__tree2.obj", "/model/new/loopix-project/WOODLAND_PACK/WOODLAND_TREES/f_tree2/tree2.png", 900));
+		tree.push(new Tree(posArray, rRot,rScale, "model/new/loopix-project/WOODLAND_PACK/WOODLAND_TREES/f_tree2/obj__tree2.obj", "/model/new/loopix-project/WOODLAND_PACK/WOODLAND_TREES/f_tree2/tree2.png", 900));
 	}
 
 	if(parseFloat(document.getElementById("sliderTree3").value) > 0){
 		var posArray = getPositionArray(terrain.vertices, parseFloat(document.getElementById("sliderTree3").value))
-		tree.push(new Tree(posArray, rRot,rScale, "../model/new/loopix-project/WOODLAND_PACK/WOODLAND_TREES/f_tree3/obj__tree3.obj", "/model/new/loopix-project/WOODLAND_PACK/WOODLAND_TREES/f_tree3/tree3.png", 900));
+		tree.push(new Tree(posArray, rRot,rScale, "model/new/loopix-project/WOODLAND_PACK/WOODLAND_TREES/f_tree3/obj__tree3.obj", "/model/new/loopix-project/WOODLAND_PACK/WOODLAND_TREES/f_tree3/tree3.png", 900));
 	}
 
 	if(parseFloat(document.getElementById("sliderTree4").value) > 0){
 		var posArray = getPositionArray(terrain.vertices, parseFloat(document.getElementById("sliderTree4").value))
-		tree.push(new Tree(posArray, rRot,rScale, "../model/new/loopix-project/WOODLAND_PACK/WOODLAND_TREES/f_tree4/obj__tree4.obj", "/model/new/loopix-project/WOODLAND_PACK/WOODLAND_TREES/f_tree4/tree4.png", 900));
+		tree.push(new Tree(posArray, rRot,rScale, "model/new/loopix-project/WOODLAND_PACK/WOODLAND_TREES/f_tree4/obj__tree4.obj", "/model/new/loopix-project/WOODLAND_PACK/WOODLAND_TREES/f_tree4/tree4.png", 900));
 	}
 
 	if(parseFloat(document.getElementById("sliderTree5").value) > 0){
 		var posArray = getPositionArray(terrain.vertices, parseFloat(document.getElementById("sliderTree5").value))
-		tree.push(new Tree(posArray, rRot,rScale, "../model/new/loopix-project/WOODLAND_PACK/WOODLAND_TREES/f_tree5/obj__tree5.obj", "/model/new/loopix-project/WOODLAND_PACK/WOODLAND_TREES/f_tree5/tree5.png", 900));
+		tree.push(new Tree(posArray, rRot,rScale, "model/new/loopix-project/WOODLAND_PACK/WOODLAND_TREES/f_tree5/obj__tree5.obj", "/model/new/loopix-project/WOODLAND_PACK/WOODLAND_TREES/f_tree5/tree5.png", 900));
 	}
 
 	if(parseFloat(document.getElementById("sliderTree6").value) > 0){
 		var posArray = getPositionArray(terrain.vertices, parseFloat(document.getElementById("sliderTree6").value))
-		tree.push(new Tree(posArray, rRot,rScale, "../model/new/loopix-project/WOODLAND_PACK/WOODLAND_TREES/f_tree6/obj__tree6.obj", "/model/new/loopix-project/WOODLAND_PACK/WOODLAND_TREES/f_tree6/tree6.png", 900));
+		tree.push(new Tree(posArray, rRot,rScale, "model/new/loopix-project/WOODLAND_PACK/WOODLAND_TREES/f_tree6/obj__tree6.obj", "/model/new/loopix-project/WOODLAND_PACK/WOODLAND_TREES/f_tree6/tree6.png", 900));
 	}
 	if(parseFloat(document.getElementById("sliderPine1").value) > 0){
 		var posArray = getPositionArray(terrain.vertices, parseFloat(document.getElementById("sliderTree5").value))
-		tree.push(new Tree(posArray, rRot,rScale,"../model/new/loopix-project/WOODLAND_PACK/WOODLAND_TREES/f_pinetree1/obj__pinet1.obj", "/model/new/loopix-project/WOODLAND_PACK/WOODLAND_TREES/f_pinetree1/pinet1.png", 900));
+		tree.push(new Tree(posArray, rRot,rScale,"model/new/loopix-project/WOODLAND_PACK/WOODLAND_TREES/f_pinetree1/obj__pinet1.obj", "/model/new/loopix-project/WOODLAND_PACK/WOODLAND_TREES/f_pinetree1/pinet1.png", 900));
 	}
 
 	if(parseFloat(document.getElementById("sliderPine2").value) > 0){
 		var posArray = getPositionArray(terrain.vertices, parseFloat(document.getElementById("sliderTree6").value))
-		tree.push(new Tree(posArray, rRot,rScale, "../model/new/loopix-project/WOODLAND_PACK/WOODLAND_TREES/f_pinetree2/obj__pinet2.obj", "/model/new/loopix-project/WOODLAND_PACK/WOODLAND_TREES/f_pinetree2/pinet2.png", 900));
+		tree.push(new Tree(posArray, rRot,rScale, "model/new/loopix-project/WOODLAND_PACK/WOODLAND_TREES/f_pinetree2/obj__pinet2.obj", "/model/new/loopix-project/WOODLAND_PACK/WOODLAND_TREES/f_pinetree2/pinet2.png", 900));
 	}
 
 	if(parseFloat(document.getElementById("sliderPalm1").value) > 0){
 		rScale = randomScale(terrain.vertices.length*12, 0, 1)
 		var posArray = getPositionArray(terrain.vertices, parseFloat(document.getElementById("sliderPalm1").value))
-		tree.push(new Tree(posArray, rRot,rScale, "../model/new/loopix-project/tropical_pack_1/TROPICAL_TREES/t_palmtree1/obj__palmt1.obj", "/model/new/loopix-project/tropical_pack_1/TROPICAL_TREES/t_palmtree1/palmt1.png", 800));
+		tree.push(new Tree(posArray, rRot,rScale, "model/new/loopix-project/tropical_pack_1/TROPICAL_TREES/t_palmtree1/obj__palmt1.obj", "/model/new/loopix-project/tropical_pack_1/TROPICAL_TREES/t_palmtree1/palmt1.png", 800));
 	}
 
 	if(parseFloat(document.getElementById("sliderPalm2").value) > 0){
 		rScale = randomScale(terrain.vertices.length*12, 0, 1)
 		var posArray = getPositionArray(terrain.vertices, parseFloat(document.getElementById("sliderPalm2").value))
-		tree.push(new Tree(posArray, rRot,rScale, "../model/new/loopix-project/tropical_pack_1/TROPICAL_TREES/t_palmtree2/obj__plamt2.obj", "/model/new/loopix-project/tropical_pack_1/TROPICAL_TREES/t_palmtree2/palmt2.png", 600));
+		tree.push(new Tree(posArray, rRot,rScale, "model/new/loopix-project/tropical_pack_1/TROPICAL_TREES/t_palmtree2/obj__plamt2.obj", "/model/new/loopix-project/tropical_pack_1/TROPICAL_TREES/t_palmtree2/palmt2.png", 600));
 	}
 
 	if(parseFloat(document.getElementById("sliderPalm3").value) > 0){
 		rScale = randomScale(terrain.vertices.length*12, 0, 1)
 		var posArray = getPositionArray(terrain.vertices, parseFloat(document.getElementById("sliderPalm3").value))
-		tree.push(new Tree(posArray, rRot,rScale, "../model/new/loopix-project/tropical_pack_1/TROPICAL_TREES/t_palmtree3/obj__plamt3.obj", "/model/new/loopix-project/tropical_pack_1/TROPICAL_TREES/t_palmtree3/palmt3.png", 600));
+		tree.push(new Tree(posArray, rRot,rScale, "model/new/loopix-project/tropical_pack_1/TROPICAL_TREES/t_palmtree3/obj__plamt3.obj", "/model/new/loopix-project/tropical_pack_1/TROPICAL_TREES/t_palmtree3/palmt3.png", 600));
 	}
 
 	if(parseFloat(document.getElementById("sliderPalm4").value) > 0){
 		rScale = randomScale(terrain.vertices.length*12, 0, 1)
 		var posArray = getPositionArray(terrain.vertices, parseFloat(document.getElementById("sliderPalm4").value))
-		tree.push(new Tree(posArray, rRot,rScale, "../model/new/loopix-project/tropical_pack_1/TROPICAL_TREES/t_palmtree4/obj__palmt4.obj", "/model/new/loopix-project/tropical_pack_1/TROPICAL_TREES/t_palmtree4/palmt4.png", 600));
+		tree.push(new Tree(posArray, rRot,rScale, "model/new/loopix-project/tropical_pack_1/TROPICAL_TREES/t_palmtree4/obj__palmt4.obj", "/model/new/loopix-project/tropical_pack_1/TROPICAL_TREES/t_palmtree4/palmt4.png", 600));
 	}
 
 	if(parseFloat(document.getElementById("sliderPalm5").value) > 0){
 		rScale = randomScale(terrain.vertices.length*12, 0, 1)
 		var posArray = getPositionArray(terrain.vertices, parseFloat(document.getElementById("sliderPalm5").value))
-		tree.push(new Tree(posArray, rRot,rScale, "../model/new/loopix-project/tropical_pack_1/TROPICAL_TREES/t_palmtree5/obj__palmt5.obj", "/model/new/loopix-project/tropical_pack_1/TROPICAL_TREES/t_palmtree5/palmt5.png", 600));
+		tree.push(new Tree(posArray, rRot,rScale, "model/new/loopix-project/tropical_pack_1/TROPICAL_TREES/t_palmtree5/obj__palmt5.obj", "/model/new/loopix-project/tropical_pack_1/TROPICAL_TREES/t_palmtree5/palmt5.png", 600));
 	}
 
 	if(parseFloat(document.getElementById("sliderPalmShrub1").value) > 0){
 		rScale = randomScale(terrain.vertices.length*12, 1, 3)
 		var posArray = getPositionArray(terrain.vertices, parseFloat(document.getElementById("sliderPalmShrub1").value))
-		tree.push(new Tree(posArray, rRot,rScale, "../model/new/loopix-project/tropical_pack_1/t_palm_shrub1/obj__palms1.obj", "/model/new/loopix-project/tropical_pack_1/t_palm_shrub1/palms1.png", 900));
+		tree.push(new Tree(posArray, rRot,rScale, "model/new/loopix-project/tropical_pack_1/t_palm_shrub1/obj__palms1.obj", "/model/new/loopix-project/tropical_pack_1/t_palm_shrub1/palms1.png", 900));
 	}
 
 
 	if(parseFloat(document.getElementById("sliderPalmShrub2").value) > 0){
 		rScale = randomScale(terrain.vertices.length*12, 1, 3)
 		var posArray = getPositionArray(terrain.vertices, parseFloat(document.getElementById("sliderPalmShrub2").value))
-		tree.push(new Tree(posArray, rRot,rScale, "../model/new/loopix-project/tropical_pack_1/t_palm_shrub2/obj__palms2.obj", "/model/new/loopix-project/tropical_pack_1/t_palm_shrub2/palms2.png", 800));
+		tree.push(new Tree(posArray, rRot,rScale, "model/new/loopix-project/tropical_pack_1/t_palm_shrub2/obj__palms2.obj", "/model/new/loopix-project/tropical_pack_1/t_palm_shrub2/palms2.png", 800));
 	}
 
 	if(parseFloat(document.getElementById("sliderShrub1").value) > 0){
 		rScale = randomScale(terrain.vertices.length*12, 1, 3)
 		var posArray = getPositionArray(terrain.vertices, parseFloat(document.getElementById("sliderShrub1").value))
-		tree.push(new Tree(posArray, rRot,rScale, "../model/new/loopix-project/WOODLAND_PACK/w_shrub2/obj__shr2.obj", "/model/new/loopix-project/WOODLAND_PACK/w_shrub2/shr2.png", 800));
+		tree.push(new Tree(posArray, rRot,rScale, "model/new/loopix-project/WOODLAND_PACK/w_shrub2/obj__shr2.obj", "/model/new/loopix-project/WOODLAND_PACK/w_shrub2/shr2.png", 800));
 	}
 
 	if(parseFloat(document.getElementById("sliderShrub2").value) > 0){
 		rScale = randomScale(terrain.vertices.length*12, 1, 3)
 		var posArray = getPositionArray(terrain.vertices, parseFloat(document.getElementById("sliderShrub2").value))
-		tree.push(new Tree(posArray, rRot,rScale, "../model/new/loopix-project/WOODLAND_PACK/w_shrub3/obj__shr3.obj", "/model/new/loopix-project/WOODLAND_PACK/w_shrub3/shr3.png", 800));
+		tree.push(new Tree(posArray, rRot,rScale, "model/new/loopix-project/WOODLAND_PACK/w_shrub3/obj__shr3.obj", "/model/new/loopix-project/WOODLAND_PACK/w_shrub3/shr3.png", 800));
 	}
 
 	if(parseFloat(document.getElementById("sliderShrub3").value) > 0){
 		rScale = randomScale(terrain.vertices.length*12, 1, 3)
 		var posArray = getPositionArray(terrain.vertices, parseFloat(document.getElementById("sliderShrub3").value))
-		tree.push(new Tree(posArray, rRot,rScale, "../model/new/loopix-project/WOODLAND_PACK/w_shrub4/obj__shr4.obj", "/model/new/loopix-project/WOODLAND_PACK/w_shrub4/shr4.png", 800));
+		tree.push(new Tree(posArray, rRot,rScale, "model/new/loopix-project/WOODLAND_PACK/w_shrub4/obj__shr4.obj", "/model/new/loopix-project/WOODLAND_PACK/w_shrub4/shr4.png", 800));
 	}
 
 	if(parseFloat(document.getElementById("sliderShrub4").value) > 0){
 		rScale = randomScale(terrain.vertices.length*12, 1, 3)
 		var posArray = getPositionArray(terrain.vertices, parseFloat(document.getElementById("sliderShrub4").value))
-		tree.push(new Tree(posArray, rRot,rScale, "../model/new/loopix-project/WOODLAND_PACK/w_shrub9/obj__shr9.obj", "/model/new/loopix-project/WOODLAND_PACK/w_shrub9/shr9.png", 800));
+		tree.push(new Tree(posArray, rRot,rScale, "model/new/loopix-project/WOODLAND_PACK/w_shrub9/obj__shr9.obj", "/model/new/loopix-project/WOODLAND_PACK/w_shrub9/shr9.png", 800));
 	}
 
 	if(parseFloat(document.getElementById("sliderShrub5").value) > 0){
 		rScale = randomScale(terrain.vertices.length*12, 1, 3)
 		var posArray = getPositionArray(terrain.vertices, parseFloat(document.getElementById("sliderShrub5").value))
-		tree.push(new Tree(posArray, rRot,rScale, "../model/new/loopix-project/WOODLAND_PACK/w_shrub15/obj__shr15.obj", "/model/new/loopix-project/WOODLAND_PACK/w_shrub15/shr15.png", 800));
+		tree.push(new Tree(posArray, rRot,rScale, "model/new/loopix-project/WOODLAND_PACK/w_shrub15/obj__shr15.obj", "/model/new/loopix-project/WOODLAND_PACK/w_shrub15/shr15.png", 800));
 	}
 
 	if(parseFloat(document.getElementById("sliderShrub6").value) > 0){
 		rScale = randomScale(terrain.vertices.length*12, 1, 3)
 		var posArray = getPositionArray(terrain.vertices, parseFloat(document.getElementById("sliderShrub6").value))
-		tree.push(new Tree(posArray, rRot,rScale, "../model/new/loopix-project/WOODLAND_PACK/w_shrub16/obj__shr16.obj", "/model/new/loopix-project/WOODLAND_PACK/w_shrub16/shr16.png", 800));
+		tree.push(new Tree(posArray, rRot,rScale, "model/new/loopix-project/WOODLAND_PACK/w_shrub16/obj__shr16.obj", "/model/new/loopix-project/WOODLAND_PACK/w_shrub16/shr16.png", 800));
 	}
 
 	//
@@ -376,54 +376,54 @@ function placeFlore(){
 	if(parseFloat(document.getElementById("sliderWeed1").value) > 0){
 		rScale = randomScale(terrain.vertices.length*12, 1, 3)
 		var posArray = getPositionArray(terrain.vertices, parseFloat(document.getElementById("sliderWeed1").value))
-		tree.push(new Tree(posArray, rRot,rScale,"../model/new/loopix-project/WOODLAND_PACK/w_weed1/obj__weed1.obj", "/model/new/loopix-project/WOODLAND_PACK/w_weed1/weed1.png", 600));
+		tree.push(new Tree(posArray, rRot,rScale,"model/new/loopix-project/WOODLAND_PACK/w_weed1/obj__weed1.obj", "/model/new/loopix-project/WOODLAND_PACK/w_weed1/weed1.png", 600));
 	}
 
 	if(parseFloat(document.getElementById("sliderWeed2").value) > 0){
 		rScale = randomScale(terrain.vertices.length*12, 1, 3)
 		var posArray = getPositionArray(terrain.vertices, parseFloat(document.getElementById("sliderWeed2").value))
-		tree.push(new Tree(posArray, rRot,rScale, "../model/new/loopix-project/WOODLAND_PACK/w_weed3/obj__weed3.obj", "/model/new/loopix-project/WOODLAND_PACK/w_weed3/weed3.png", 600));
+		tree.push(new Tree(posArray, rRot,rScale, "model/new/loopix-project/WOODLAND_PACK/w_weed3/obj__weed3.obj", "/model/new/loopix-project/WOODLAND_PACK/w_weed3/weed3.png", 600));
 	}
 
 
 	if(parseFloat(document.getElementById("sliderWeed3").value) > 0){
 		rScale = randomScale(terrain.vertices.length*12, 1, 3)
 		var posArray = getPositionArray(terrain.vertices, parseFloat(document.getElementById("sliderWeed3").value))
-		tree.push(new Tree(posArray, rRot,rScale, "../model/new/loopix-project/WOODLAND_PACK/w_weed4/obj__weed4.obj", "/model/new/loopix-project/WOODLAND_PACK/w_weed4/weed4.png", 600));
+		tree.push(new Tree(posArray, rRot,rScale, "model/new/loopix-project/WOODLAND_PACK/w_weed4/obj__weed4.obj", "/model/new/loopix-project/WOODLAND_PACK/w_weed4/weed4.png", 600));
 	}
 
 	if(parseFloat(document.getElementById("sliderWeed4").value) > 0){
 		rScale = randomScale(terrain.vertices.length*12, 1, 3)
 		var posArray = getPositionArray(terrain.vertices, parseFloat(document.getElementById("sliderWeed4").value))
-		tree.push(new Tree(posArray, rRot,rScale, "../model/new/loopix-project/WOODLAND_PACK/w_weed5/obj__weed5.obj", "/model/new/loopix-project/WOODLAND_PACK/w_weed5/weed5.png", 600));
+		tree.push(new Tree(posArray, rRot,rScale, "model/new/loopix-project/WOODLAND_PACK/w_weed5/obj__weed5.obj", "/model/new/loopix-project/WOODLAND_PACK/w_weed5/weed5.png", 600));
 	}
 
 	if(parseFloat(document.getElementById("sliderWeed5").value) > 0){
 		rScale = randomScale(terrain.vertices.length*12, 1, 3)
 		var posArray = getPositionArray(terrain.vertices, parseFloat(document.getElementById("sliderWeed5").value))
-		tree.push(new Tree(posArray, rRot,rScale, "../model/new/loopix-project/WOODLAND_PACK/w_weed6/obj__weed6.obj", "/model/new/loopix-project/WOODLAND_PACK/w_weed6/weed6.png", 600));
+		tree.push(new Tree(posArray, rRot,rScale, "model/new/loopix-project/WOODLAND_PACK/w_weed6/obj__weed6.obj", "/model/new/loopix-project/WOODLAND_PACK/w_weed6/weed6.png", 600));
 	}
 
 	if(parseFloat(document.getElementById("sliderWeed6").value) > 0){
 		rScale = randomScale(terrain.vertices.length*12, 1, 3)
 		var posArray = getPositionArray(terrain.vertices, parseFloat(document.getElementById("sliderWeed6").value))
-		tree.push(new Tree(posArray, rRot,rScale, "../model/new/loopix-project/WOODLAND_PACK/w_weed4a/obj__weed4a.obj", "/model/new/loopix-project/WOODLAND_PACK/w_weed4a/weed4a.png", 600));
+		tree.push(new Tree(posArray, rRot,rScale, "model/new/loopix-project/WOODLAND_PACK/w_weed4a/obj__weed4a.obj", "/model/new/loopix-project/WOODLAND_PACK/w_weed4a/weed4a.png", 600));
 	}
 
 	if(parseFloat(document.getElementById("sliderPoney").value) > 0){
 		rScale = randomScale(terrain.vertices.length*12, 1, 1)
 		var posArray = getPositionArray(terrain.vertices, parseFloat(document.getElementById("sliderPoney").value))
-		tree.push(new Tree(posArray, rRot, rScale, "../model/pony2/pony.obj", "model/pony2/pony.png", 600));
-		tree.push(new Tree(posArray, rRot, rScale, "../model/pony2/eyelashes.obj", "model/pony2/eyelashes.png", 600));
-		tree.push(new Tree(posArray, rRot, rScale, "../model/pony2/hairBack.obj", "model/pony2/hairBack.png", 600));
-		tree.push(new Tree(posArray, rRot, rScale, "../model/pony2/hairFront.obj", "model/pony2/hairFront.png", 600));
-		tree.push(new Tree(posArray, rRot, rScale, "../model/pony2/leftEye.obj", "model/pony2/leftEye.png", 600));
-		tree.push(new Tree(posArray, rRot, rScale, "../model/pony2/leftWing.obj", "model/pony2/leftWing.png", 600));
-		tree.push(new Tree(posArray, rRot, rScale, "../model/pony2/rightEye.obj", "model/pony2/rightEye.png", 600));
-		tree.push(new Tree(posArray, rRot, rScale, "../model/pony2/rightWing.obj", "model/pony2/rightWing.png", 600));
-		tree.push(new Tree(posArray, rRot, rScale, "../model/pony2/tail.obj", "model/pony2/tail.png", 600));
-		tree.push(new Tree(posArray, rRot, rScale, "../model/pony2/teeth.obj", "model/pony2/teeth.png", 600));
-		tree.push(new Tree(posArray, rRot, rScale, "../model/pony2/tongue.obj", "model/pony2/tongue.png", 600));
+		tree.push(new Tree(posArray, rRot, rScale, "model/pony2/pony.obj", "model/pony2/pony.png", 600));
+		tree.push(new Tree(posArray, rRot, rScale, "model/pony2/eyelashes.obj", "model/pony2/eyelashes.png", 600));
+		tree.push(new Tree(posArray, rRot, rScale, "model/pony2/hairBack.obj", "model/pony2/hairBack.png", 600));
+		tree.push(new Tree(posArray, rRot, rScale, "model/pony2/hairFront.obj", "model/pony2/hairFront.png", 600));
+		tree.push(new Tree(posArray, rRot, rScale, "model/pony2/leftEye.obj", "model/pony2/leftEye.png", 600));
+		tree.push(new Tree(posArray, rRot, rScale, "model/pony2/leftWing.obj", "model/pony2/leftWing.png", 600));
+		tree.push(new Tree(posArray, rRot, rScale, "model/pony2/rightEye.obj", "model/pony2/rightEye.png", 600));
+		tree.push(new Tree(posArray, rRot, rScale, "model/pony2/rightWing.obj", "model/pony2/rightWing.png", 600));
+		tree.push(new Tree(posArray, rRot, rScale, "model/pony2/tail.obj", "model/pony2/tail.png", 600));
+		tree.push(new Tree(posArray, rRot, rScale, "model/pony2/teeth.obj", "model/pony2/teeth.png", 600));
+		tree.push(new Tree(posArray, rRot, rScale, "model/pony2/tongue.obj", "model/pony2/tongue.png", 600));
 	}
 }
 
